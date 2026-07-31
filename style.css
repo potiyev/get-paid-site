@@ -161,3 +161,7 @@ footer .small { font-size: 13px; margin-top: 8px; }
   padding: 14px; margin: 0 auto 10px; display: block;
   background: var(--cream); border: 3px solid var(--ink); border-radius: 50%;
 }
+
+/* ---- header brand: keep the icon small and inline ---- */
+header .brand { font-size: 20px; flex-wrap: nowrap; white-space: nowrap; }
+header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 auto; }
