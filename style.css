@@ -215,3 +215,42 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
   .smash .hammer { transform: rotate(-30deg); }
   .smash .coin:nth-child(2), .smash .coin:nth-child(4) { opacity: 1; transform: translate(var(--dx), 30px); }
 }
+
+/* ---- hero smash animation v2 (chop, reliable positioning) ---- */
+.smash { position: relative; width: 240px; height: 210px; }
+.smash .piggy {
+  position: absolute; left: 50%; bottom: 0; width: 150px; margin: 0;
+  transform: translateX(-50%); transform-origin: bottom center;
+  animation: piggy-smash 3s ease-in-out infinite;
+}
+.smash .hammer {
+  position: absolute; left: 50%; top: 0; width: 112px; margin-left: -42px;
+  transform-origin: bottom center; transform: translateY(-34px) rotate(-16deg);
+  animation: hammer-chop 3s ease-in-out infinite; z-index: 3;
+}
+.smash .coins { position: absolute; left: 50%; top: 62px; width: 0; height: 0; }
+.smash .coin {
+  position: absolute; left: -19px; top: -19px; width: 38px; margin: 0;
+  opacity: 0; animation: coin-burst 3s ease-in-out infinite;
+}
+@keyframes hammer-chop {
+  0%, 10%  { transform: translateY(-34px) rotate(-16deg); }
+  17%      { transform: translateY(8px) rotate(6deg); }
+  24%      { transform: translateY(0) rotate(2deg); }
+  34%,100% { transform: translateY(-34px) rotate(-16deg); }
+}
+@keyframes piggy-smash {
+  0%, 15%  { transform: translateX(-50%) scale(1,1); }
+  18%      { transform: translateX(-50%) scale(1.14,0.8); }
+  22%      { transform: translateX(-53%) scale(0.93,1.08); }
+  26%      { transform: translateX(-47%) scale(1.03,0.97); }
+  32%,100% { transform: translateX(-50%) scale(1,1); }
+}
+@keyframes coin-burst {
+  0%, 16%  { opacity: 0; transform: translate(0,0) scale(0.4); }
+  19%      { opacity: 1; transform: translate(calc(var(--dx)*0.35), -14px) scale(1); }
+  36%      { opacity: 1; transform: translate(var(--dx), -48px) scale(1); }
+  62%      { opacity: 1; transform: translate(var(--dx), 74px) scale(1); }
+  82%      { opacity: 1; transform: translate(var(--dx), 74px) scale(1); }
+  93%,100% { opacity: 0; transform: translate(var(--dx), 74px) scale(0.7); }
+}
