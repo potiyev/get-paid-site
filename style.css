@@ -122,3 +122,33 @@ nav a:hover { color: var(--berry); }
 footer { border-top: 3px solid var(--ink); padding: 26px 0; text-align: center; color: var(--ink-soft); }
 footer a { color: var(--berry); text-decoration: none; font-weight: 600; margin: 0 10px; }
 footer .small { font-size: 13px; margin-top: 8px; }
+
+/* ---- game-art additions ---- */
+.brand { display: inline-flex; align-items: center; gap: 8px; }
+.brand img { width: 34px; height: 34px; border-radius: 9px; border: 2px solid var(--ink); }
+
+.hero-art { display: flex; align-items: flex-end; justify-content: center; gap: 6px; margin: 6px 0 26px; min-height: 160px; }
+.hero-art .piggy { width: clamp(120px, 30vw, 168px); animation: bob 2.4s ease-in-out infinite; }
+.hero-art .hammer { width: clamp(78px, 20vw, 112px); transform: rotate(-16deg); animation: swing 2.4s ease-in-out infinite; transform-origin: bottom center; }
+.hero-art .coin { width: clamp(34px, 9vw, 48px); }
+.hero-art .c1 { animation: float 2.8s ease-in-out infinite; }
+.hero-art .c2 { animation: float 2.8s ease-in-out infinite 0.6s; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+@keyframes swing { 0%,100% { transform: rotate(-16deg); } 50% { transform: rotate(-30deg); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@media (prefers-reduced-motion: reduce) { .hero-art * { animation: none !important; } }
+
+.card { text-align: center; }
+.card .ic { width: 62px; height: 62px; object-fit: contain; margin-bottom: 6px; }
+.card p { text-align: left; }
+
+.menagerie { padding: 24px 0 64px; text-align: center; }
+.pig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 26px; margin-top: 26px; }
+.pig-row figure {
+  width: 116px; background: var(--paper); border: 3px solid var(--ink);
+  border-radius: 18px; padding: 12px 6px; box-shadow: 0 5px 0 var(--ink);
+}
+.pig-row figure:nth-child(even) { transform: rotate(2deg); }
+.pig-row figure:nth-child(odd) { transform: rotate(-2deg); }
+.pig-row img { width: 84px; height: 84px; object-fit: contain; }
+.pig-row figcaption { font-weight: 600; font-size: 13px; margin-top: 6px; color: var(--ink); }
