@@ -254,3 +254,16 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
   82%      { opacity: 1; transform: translate(var(--dx), 74px) scale(1); }
   93%,100% { opacity: 0; transform: translate(var(--dx), 74px) scale(0.7); }
 }
+
+/* ---- hero smash animation v3 (game-like: swing, crack, coins fall) ---- */
+.smash { position: relative; width: 240px; height: 210px; }
+.smash .piggy { position:absolute; left:50%; bottom:0; width:150px; margin:0; transform:translateX(-50%); transform-origin:bottom center; animation: hs-piggy 3s ease-in-out infinite; }
+.smash .crack { position:absolute; left:50%; bottom:0; width:150px; margin:0; transform:translateX(-50%); opacity:0; animation: hs-crack 3s ease-in-out infinite; z-index:2; }
+.smash .coins { position:absolute; left:50%; top:72px; width:0; height:0; }
+.smash .coin { position:absolute; left:-18px; top:-18px; width:36px; margin:0; opacity:0; animation: hs-coin 3s ease-in-out infinite; }
+.smash .hammer { position:absolute; left:30%; top:16px; width:116px; margin:0; transform-origin:22% 86%; transform:rotate(46deg); animation: hs-hammer 3s ease-in-out infinite; z-index:3; }
+@keyframes hs-hammer { 0%,8%{transform:rotate(46deg)} 16%{transform:rotate(-52deg)} 22%{transform:rotate(-44deg)} 32%,100%{transform:rotate(46deg)} }
+@keyframes hs-piggy { 0%,14%{transform:translateX(-50%) scale(1,1)} 17%{transform:translateX(-50%) scale(1.13,0.82)} 21%{transform:translateX(-52%) scale(0.94,1.07)} 26%{transform:translateX(-48%) scale(1.02,0.98)} 32%,100%{transform:translateX(-50%) scale(1,1)} }
+@keyframes hs-crack { 0%,15%{opacity:0} 18%{opacity:1} 78%{opacity:1} 90%,100%{opacity:0} }
+@keyframes hs-coin { 0%,15%{opacity:0; transform:translate(0,0) scale(0.4)} 19%{opacity:1; transform:translate(calc(var(--dx)*0.35),-14px) scale(1)} 36%{opacity:1; transform:translate(var(--dx),-44px) scale(1)} 62%{opacity:1; transform:translate(var(--dx),72px) scale(1)} 82%{opacity:1; transform:translate(var(--dx),72px) scale(1)} 92%,100%{opacity:0; transform:translate(var(--dx),72px) scale(0.7)} }
+@media (prefers-reduced-motion: reduce) { .smash .piggy, .smash .hammer, .smash .coin, .smash .crack { animation: none !important; } .smash .hammer { transform: rotate(30deg); } }
