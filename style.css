@@ -267,3 +267,16 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
 @keyframes hs-crack { 0%,15%{opacity:0} 18%{opacity:1} 78%{opacity:1} 90%,100%{opacity:0} }
 @keyframes hs-coin { 0%,15%{opacity:0; transform:translate(0,0) scale(0.4)} 19%{opacity:1; transform:translate(calc(var(--dx)*0.35),-14px) scale(1)} 36%{opacity:1; transform:translate(var(--dx),-44px) scale(1)} 62%{opacity:1; transform:translate(var(--dx),72px) scale(1)} 82%{opacity:1; transform:translate(var(--dx),72px) scale(1)} 92%,100%{opacity:0; transform:translate(var(--dx),72px) scale(0.7)} }
 @media (prefers-reduced-motion: reduce) { .smash .piggy, .smash .hammer, .smash .coin, .smash .crack { animation: none !important; } .smash .hammer { transform: rotate(30deg); } }
+
+/* ---- hero smash animation v4 (hit, crack, hit, break, coins drop in place) ---- */
+.smash { position: relative; width: 240px; height: 210px; }
+.smash .piggy { position:absolute; left:50%; bottom:0; width:150px; margin:0; transform:translateX(-50%); transform-origin:bottom center; animation: hs2-piggy 3.5s ease-in-out infinite; }
+.smash .crack { position:absolute; left:50%; bottom:0; width:150px; margin:0; transform:translateX(-50%); opacity:0; z-index:2; animation: hs2-crack 3.5s ease-in-out infinite; }
+.smash .coins { position:absolute; left:50%; top:auto; bottom:34px; width:0; height:0; z-index:4; }
+.smash .coin { position:absolute; left:-17px; top:-17px; width:34px; margin:0; opacity:0; z-index:4; animation: hs2-coin 3.5s ease-in-out infinite; }
+.smash .hammer { position:absolute; left:30%; top:16px; width:116px; margin:0; transform-origin:22% 86%; transform:rotate(46deg); z-index:3; animation: hs2-hammer 3.5s ease-in-out infinite; }
+@keyframes hs2-hammer { 0%,7%{transform:rotate(46deg)} 13%{transform:rotate(-52deg)} 22%{transform:rotate(46deg)} 35%{transform:rotate(-52deg)} 44%,100%{transform:rotate(46deg)} }
+@keyframes hs2-piggy { 0%,11%{transform:translateX(-50%) scale(1,1); opacity:1} 14%{transform:translateX(-50%) scale(1.1,0.85)} 20%{transform:translateX(-50%) scale(1,1)} 36%{transform:translateX(-50%) scale(1.14,0.8); opacity:1} 39%{transform:translateX(-50%) scale(1.25,0.6); opacity:0} 86%{opacity:0} 91%{transform:translateX(-50%) scale(1,1); opacity:1} 100%{transform:translateX(-50%) scale(1,1); opacity:1} }
+@keyframes hs2-crack { 0%,13%{opacity:0} 16%{opacity:1} 37%{opacity:1} 39%,100%{opacity:0} }
+@keyframes hs2-coin { 0%,37%{opacity:0; transform:translate(0,-30px) scale(0.4)} 41%{opacity:1; transform:translate(calc(var(--dx)*0.7),-40px) scale(1)} 56%{opacity:1; transform:translate(var(--dx),0) scale(1)} 80%{opacity:1; transform:translate(var(--dx),0) scale(1)} 88%,100%{opacity:0; transform:translate(var(--dx),0) scale(0.85)} }
+@media (prefers-reduced-motion: reduce) { .smash .piggy, .smash .hammer, .smash .coin, .smash .crack { animation: none !important; } .smash .hammer { transform: rotate(30deg); } }
