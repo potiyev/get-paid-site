@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="Get Paid! Piggy Smash">
 <meta name="twitter:description" content="Smash piggy banks, grab the coins, and pay your bills before the Collector shows up.">
 <meta name="twitter:image" content="https://piggiesmash.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <header>
@@ -41,13 +41,34 @@
     <p class="tagline">smash piggies &middot; pay bills &middot; get debt free</p>
     <p class="sub">You are broke and rent is due. Good thing your piggy banks are full. Grab a hammer, smash them open, and scoop up the coins before the Collector takes a cut.</p>
     <div class="hero-art">
+      <!-- Four hits, four staged bodies, then shards — the same break the game
+           runs (Views/MenuPiggy.swift). Damage is drawn into the body art, so
+           each hit swaps the whole sprite rather than fading a crack on top. -->
       <div class="smash">
-        <img class="piggy" src="assets/piggy.png" alt="A pink piggy bank">
-        <img class="crack" src="assets/crack.png" alt="">
+        <div class="pig">
+          <img class="body s0" src="assets/piggy.png" alt="A pink piggy bank">
+          <img class="body s1" src="assets/piggy-dmg80.png" alt="">
+          <img class="body s2" src="assets/piggy-dmg60.png" alt="">
+          <img class="body s3" src="assets/piggy-dmg40.png" alt="">
+          <img class="body s4" src="assets/piggy-dmg20.png" alt="">
+        </div>
+        <span class="burst">
+          <img class="spark" src="assets/spark.png" alt="">
+          <i class="chip" style="--dx:42px;--dy:-14px;--r:-150deg;--s:15px"></i>
+          <i class="cap"  style="--dx:51px;--dy:-34px;--r:-79deg;--s:10px"></i>
+          <i class="chip" style="--dx:50px;--dy:-60px;--r:-8deg;--s:10px"></i>
+          <i class="cap"  style="--dx:23px;--dy:-52px;--r:63deg;--s:15px"></i>
+          <i class="chip" style="--dx:10px;--dy:-73px;--r:134deg;--s:10px"></i>
+          <i class="cap"  style="--dx:-7px;--dy:-52px;--r:-95deg;--s:10px"></i>
+          <i class="chip" style="--dx:-28px;--dy:-64px;--r:-24deg;--s:15px"></i>
+          <i class="cap"  style="--dx:-31px;--dy:-38px;--r:47deg;--s:10px"></i>
+          <i class="chip" style="--dx:-55px;--dy:-37px;--r:118deg;--s:10px"></i>
+          <i class="cap"  style="--dx:-43px;--dy:-14px;--r:-111deg;--s:15px"></i>
+        </span>
         <span class="coins">
-          <img class="coin" src="assets/coin.png" alt="" style="--dx:-24px">
-          <img class="coin" src="assets/coin.png" alt="" style="--dx:4px">
-          <img class="coin" src="assets/coin.png" alt="" style="--dx:26px">
+          <img class="coin" src="assets/coin.png" alt="" style="--dx:-44px">
+          <img class="coin" src="assets/coin.png" alt="" style="--dx:0px">
+          <img class="coin" src="assets/coin.png" alt="" style="--dx:46px">
         </span>
         <img class="hammer" src="assets/hammer.png" alt="A wooden hammer">
       </div>
