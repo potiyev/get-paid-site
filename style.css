@@ -142,16 +142,6 @@ footer .small { font-size: 13px; margin-top: 8px; }
 .card .ic { width: 62px; height: 62px; object-fit: contain; margin-bottom: 6px; }
 .card p { text-align: left; }
 
-.menagerie { padding: 24px 0 64px; text-align: center; }
-.pig-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px 26px; margin-top: 26px; }
-.pig-row figure {
-  width: 116px; background: var(--paper); border: 3px solid var(--ink);
-  border-radius: 18px; padding: 12px 6px; box-shadow: 0 5px 0 var(--ink);
-}
-.pig-row figure:nth-child(even) { transform: rotate(2deg); }
-.pig-row figure:nth-child(odd) { transform: rotate(-2deg); }
-.pig-row img { width: 84px; height: 84px; object-fit: contain; }
-.pig-row figcaption { font-weight: 600; font-size: 13px; margin-top: 6px; color: var(--ink); }
 
 /* ---- real logo + badged icons (overrides) ---- */
 .hero .logo { width: min(560px, 90vw); height: auto; display: block; margin: 0 auto 6px; }
@@ -280,3 +270,22 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
 @keyframes hs2-crack { 0%,13%{opacity:0} 16%{opacity:1} 37%{opacity:1} 39%,100%{opacity:0} }
 @keyframes hs2-coin { 0%,37%{opacity:0; transform:translate(0,-30px) scale(0.4)} 41%{opacity:1; transform:translate(calc(var(--dx)*0.7),-40px) scale(1)} 56%{opacity:1; transform:translate(var(--dx),0) scale(1)} 80%{opacity:1; transform:translate(var(--dx),0) scale(1)} 88%,100%{opacity:0; transform:translate(var(--dx),0) scale(0.85)} }
 @media (prefers-reduced-motion: reduce) { .smash .piggy, .smash .hammer, .smash .coin, .smash .crack { animation: none !important; } .smash .hammer { transform: rotate(30deg); } }
+
+/* ---- stacked feature sections + the numbers strip ---- */
+.features + .features { padding-top: 0; }
+.features .sub { margin-bottom: 0; }
+.features h2 + .sub { margin-top: 4px; }
+
+.numbers { padding: 8px 0 66px; }
+.numbers ul {
+  list-style: none; display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 12px 14px;
+}
+.numbers li {
+  background: var(--paper); border: 3px solid var(--ink); border-radius: 999px;
+  box-shadow: 0 4px 0 var(--ink);
+  padding: 8px 20px; font-size: 15px; font-weight: 600; color: var(--ink-soft);
+}
+.numbers li:nth-child(odd)  { transform: rotate(-1.5deg); }
+.numbers li:nth-child(even) { transform: rotate(1.5deg); }
+.numbers b { font-size: 21px; font-weight: 700; color: var(--berry); margin-right: 5px; }
