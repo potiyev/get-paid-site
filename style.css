@@ -97,8 +97,16 @@ nav a:hover { color: var(--berry); }
 /* ---- features ---- */
 .features { padding: 30px 0 60px; }
 .features h2, .page h1 { text-align: center; font-size: 34px; font-weight: 700; margin-bottom: 8px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 26px; }
+/* Flex rather than grid so a row that does not fill up CENTRES its cards. An
+   auto-fit grid packs the leftovers against the left edge, which stranded the
+   fifth card of "What you do" on its own in the corner. The 320px cap is the
+   natural width of a three-card row, so full rows lay out exactly as they did. */
+.grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 18px; margin-top: 26px;
+}
 .card {
+  flex: 1 1 220px; max-width: 320px;
   background: var(--paper); border: 3px solid var(--ink); border-radius: 20px;
   padding: 22px; box-shadow: 0 6px 0 var(--ink);
 }
@@ -140,7 +148,9 @@ footer .small { font-size: 13px; margin-top: 8px; }
 
 .card { text-align: center; }
 .card .ic { width: 62px; height: 62px; object-fit: contain; margin-bottom: 6px; }
-.card p { text-align: left; }
+/* Centred with the rest of the card. The badged icon and the heading were
+   already centred, so ragged-left body under them read as a misprint. */
+.card p { text-align: center; }
 
 
 /* ---- real logo + badged icons (overrides) ---- */
@@ -444,3 +454,102 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
   .smash .spark { opacity: 0 }
   .smash .coin { opacity: 1; transform: translate(var(--dx), 6px) }
 }
+
+/* ---- press kit (press.html) ------------------------------------------- */
+.kit-cta { text-align: center; margin: 22px 0 4px; }
+
+.facts { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.facts th, .facts td { text-align: left; padding: 9px 6px; vertical-align: top;
+  border-bottom: 2px dotted rgba(74,51,41,.22); }
+.facts th { width: 38%; color: var(--berry-dark); font-weight: 700; white-space: nowrap; }
+.facts tr:last-child th, .facts tr:last-child td { border-bottom: 0; }
+
+.small-note { font-size: 14px; color: var(--ink-soft); margin-top: 12px; }
+
+.page h3 { font-size: 16px; font-weight: 700; margin: 18px 0 4px;
+  color: var(--gold-dark); text-transform: uppercase; letter-spacing: .5px; }
+
+.page blockquote { margin: 0; padding: 14px 16px; background: var(--cream);
+  border: 3px solid var(--ink); border-radius: 16px; box-shadow: 0 4px 0 var(--ink); }
+.page blockquote p:last-child { margin-bottom: 0; }
+
+/* Screenshots are 1320x2868 and there are six: a fixed 3-up would be a wall of
+   thumbnails on a phone, so let them reflow and cap the height instead. */
+.shotgrid, .artgrid { display: grid; gap: 14px; margin-top: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.artgrid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: center; }
+.shotgrid img, .artgrid img { width: 100%; height: auto; display: block;
+  border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 5px 0 var(--ink);
+  background: var(--paper); }
+.artgrid img { padding: 10px; }
+.artgrid img.icon { max-width: 180px; margin: 0 auto; }
+.shotgrid a:active img, .artgrid a:active img { transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--ink); }
+
+.swatches { list-style: none; padding-left: 0; display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.swatches li { display: flex; align-items: center; gap: 9px; font-size: 15px; }
+.swatches i { width: 26px; height: 26px; flex: 0 0 auto; border-radius: 8px;
+  border: 2px solid var(--ink); }
+.swatches code { color: var(--ink-soft); font-size: 13px; }
+
+/* ---- narrow screens: three nav links no longer fit beside the brand ----
+   The header was a single nowrap row built for two links. Adding Press pushes
+   it past a 390px viewport, and because the row is nowrap the whole PAGE gets
+   a horizontal scrollbar rather than the header wrapping. Stack it instead. */
+@media (max-width: 560px) {
+  header .wrap { flex-direction: column; align-items: center; gap: 8px; }
+  header .brand { font-size: 19px; white-space: normal; text-align: center; }
+  nav { display: flex; justify-content: center; gap: 18px; }
+  nav a { margin-left: 0; }
+  .facts th { white-space: normal; width: 42%; }
+  .kit-cta .btn { display: block; }
+  /* One card per row down here, so the 320px cap that centres a short row on a
+     wide screen would just inset every card behind pointless gutters. */
+  .card { max-width: 100%; }
+}
+
+/* ---- coin shower ----------------------------------------------------------
+   Every so often a handful of coins falls past the page, then it goes quiet
+   again. Scattering, timing and the length of the quiet spell are picked in JS
+   (index.html) and handed down as custom properties; the motion itself is CSS,
+   so it runs off the compositor and costs nothing while it plays.
+
+   The layer sits BEHIND the content — header/main/footer are lifted to z-index
+   1 for it — so a coin passes behind the cards and screenshots instead of over
+   the copy. Most of the page is transparent, so they are still plainly there;
+   they just have somewhere to go. It never takes a pointer event.
+
+   Two nested elements because one cannot animate `transform` twice: the span
+   falls (and drifts), the image inside it spins. */
+.coinfall {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden; pointer-events: none;
+}
+header, main, footer { position: relative; z-index: 1; }
+
+.coinfall .drop {
+  position: absolute; top: -14vh; left: var(--x);
+  margin-left: calc(var(--size) * -0.5);
+  animation: coin-fall var(--dur) linear forwards;
+}
+.coinfall .drop img {
+  display: block; width: var(--size); height: auto; margin: 0;
+  animation: coin-flip var(--spindur) linear infinite;
+  filter: drop-shadow(0 2px 0 rgba(74, 51, 41, 0.16));
+}
+
+/* Y is spaced out rather than even so the coin reads as accelerating under a
+   linear clock; X wanders either side of the line it started on. */
+@keyframes coin-fall {
+    0% { transform: translate(0, 0); opacity: 0; }
+    7% { opacity: 1; }
+   25% { transform: translate(var(--sway), 16vh); }
+   50% { transform: translate(calc(var(--sway) * -0.6), 42vh); }
+   75% { transform: translate(calc(var(--sway) * 0.8), 74vh); }
+   93% { opacity: 1; }
+  100% { transform: translate(0, 122vh); opacity: 0; }
+}
+@keyframes coin-flip { to { transform: rotate(var(--spin)); } }
+
+@media (prefers-reduced-motion: reduce) { .coinfall { display: none; } }
