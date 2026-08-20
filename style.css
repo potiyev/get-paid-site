@@ -83,6 +83,26 @@ nav a:hover { color: var(--berry); }
 .sub { color: var(--ink-soft); max-width: 560px; margin: 0 auto 28px; }
 .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .soon { font-size: 14px; color: var(--ink-soft); margin-top: 14px; }
+.soon a { color: var(--berry); }
+
+/* ---- store badges ----------------------------------------------------------
+   Apple's and Google's own lockups, which neither company lets you restyle: no
+   border, no shadow, no rounding of our own, and no scrapbook wobble. The only
+   thing we control is size, and both guidelines say the same thing about that —
+   the two badges get equal height and the App Store one is never the smaller.
+
+   Equal height, from two DIFFERENT aspect ratios (Apple 3:1, Google 3.371:1),
+   without a fixed pixel height: give each a flex-grow equal to its own ratio
+   over a zero basis. Flex then hands out the row's width in exactly 3 : 3.371,
+   which is the same thing as saying "same height". A fixed `height: 56px`
+   looked identical on a desktop and ran off the side of a 360px phone, because
+   two badges sized in px cannot shrink; this cannot overflow at any width. */
+.cta.store { align-items: center; gap: 16px; max-width: 380px; margin: 0 auto; flex-wrap: nowrap; }
+.storebadge { display: block; line-height: 0; min-width: 0; }
+.storebadge.apple  { flex: 3 1 0; }
+.storebadge.google { flex: 3.371 1 0; }
+.storebadge img { width: 100%; height: auto; display: block; }
+.storebadge:active { transform: translateY(2px); }
 
 /* ---- shots ---- */
 .shots { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; padding: 20px 0 50px; }
@@ -285,6 +305,16 @@ header .brand img { width: 34px !important; height: 34px !important; flex: 0 0 a
 .features + .features { padding-top: 0; }
 .features .sub { margin-bottom: 0; }
 .features h2 + .sub { margin-top: 4px; }
+
+/* The one prose section on the page. `.features .sub` zeroes its bottom margin
+   (it exists to sit tight under an h2 as a one-line deck), so two stacked
+   paragraphs ran together; and `.features` only centres its h2, which left
+   multi-line body copy ragged-right under a centred heading while every card on
+   the page centres its text. Both are re-stated here rather than changed at
+   source, because the one-line-deck behaviour is right everywhere else. */
+.fair { text-align: center; }
+.fair .sub { margin-bottom: 16px; }
+.fair .sub:last-child { margin-bottom: 0; }
 
 .numbers { padding: 8px 0 66px; }
 .numbers ul {

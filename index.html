@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="Piggy Smash! Get Paid!">
 <meta name="twitter:description" content="Smash piggy banks, grab the coins, and pay your bills before the Collector shows up.">
 <meta name="twitter:image" content="https://piggiesmash.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 <header>
@@ -74,11 +74,21 @@
         <img class="hammer" src="assets/hammer.png" alt="A wooden hammer">
       </div>
     </div>
-    <div class="cta">
-      <a class="btn" href="#">Get it on the App Store</a>
-      <a class="btn mint" href="support.html">Need help?</a>
+    <!-- Both companies' own artwork, rasterised from their SVGs by
+         tools/make_store_badges.py in the game repo — neither permits a
+         redraw, so these are not styled as .btn and do not get the scrapbook
+         treatment. The .apple / .google classes carry each lockup's aspect
+         ratio into the flex weights that keep the two the same height; see the
+         store-badge block in style.css. -->
+    <div class="cta store">
+      <a class="storebadge apple" href="https://apps.apple.com/us/app/piggy-smash/id6796205787">
+        <img src="assets/badge-appstore.png" width="1200" height="400" alt="Download on the App Store">
+      </a>
+      <a class="storebadge google" href="https://play.google.com/store/apps/details?id=com.vladimir.getpaid">
+        <img src="assets/badge-googleplay.png" width="1200" height="356" alt="Get it on Google Play">
+      </a>
     </div>
-    <p class="soon">Coming soon to iPhone, iPad, and Android.</p>
+    <p class="soon">Free to start on iPhone, iPad, and Android. One $1.99 unlock, no ads, no timers. &middot; <a href="support.html">Need help?</a></p>
   </section>
 
   <section class="shots">
@@ -112,21 +122,35 @@
     </div>
   </section>
 
+  <!-- Two three-card rows rather than one row of six. The build layer (career,
+       Certification, abilities) and the apartment layer (bills, decor, hammers)
+       are different promises, and a six-card wall reads as one undifferentiated
+       list of features. Three is also exactly the natural width of a full row —
+       see the .grid note in style.css. -->
+  <section class="features">
+    <h2>Make it your run</h2>
+    <p class="sub">Two players with the same upgrades do not play the same game.</p>
+    <div class="grid">
+      <div class="card"><img class="ic" src="assets/ic-job.png" alt=""><h3>Pick a career</h3><p>Tech, Trades, Care, Money, Creative. Each one is a real trade-off &mdash; Trades puts another piggy on the table and makes every one of them tougher &mdash; and you are locked into it until you Move Out. Pick the life, live with it.</p></div>
+      <div class="card"><img class="ic" src="assets/ic-rare.png" alt=""><h3>Earn a Certification</h3><p>Go deep enough in a talent tree and you qualify for one. It is a rule change with a catch attached, not a bigger number, and <strong>you only ever hold one</strong>. Your career brings an option nobody else can take.</p></div>
+      <div class="card"><img class="ic" src="assets/ic-perks.png" alt=""><h3>Perks and abilities</h3><p>Pay a bill on time and a perk sticks with you for the whole chapter. There is a long list of them, plus active abilities you fire off mid-run when the table gets loud.</p></div>
+    </div>
+  </section>
+
   <section class="features">
     <h2>Make it your place</h2>
     <div class="grid">
-      <div class="card"><img class="ic" src="assets/ic-job.png" alt=""><h3>Pick your job</h3><p>Say what you do for a living &mdash; nurse, electrician, barista, whatever it actually is &mdash; and every bill re-skins to match, with its own very specific invoices and a deadpan memo on the bottom.</p></div>
+      <div class="card"><img class="ic" src="assets/ic-bills.png" alt=""><h3>Bills with your name on them</h3><p>Say what you do for a living &mdash; nurse, electrician, barista, whatever it actually is &mdash; and every bill re-skins to match, with its own very specific invoices and a deadpan memo on the bottom.</p></div>
       <div class="card"><img class="ic" src="assets/ic-decorate.png" alt=""><h3>Decorate the apartment</h3><p>Wall art, a table runner, a plant, a lava lamp &mdash; and a lot more where those came from. It all shows up on the table you actually play on. There is more than one place to live, too.</p></div>
       <div class="card"><img class="ic" src="assets/ic-hammers.png" alt=""><h3>Better hammers</h3><p>You start with the rusty mallet that came with the apartment. A baseball bat is not far off. What is waiting at the end of the rack you can find out for yourself &mdash; each one swings differently.</p></div>
-      <div class="card"><img class="ic" src="assets/ic-perks.png" alt=""><h3>Perks and abilities</h3><p>Pay a bill on time and a perk sticks with you for the whole chapter. There is a long list of them, plus active abilities you fire off mid-run when the table gets loud.</p></div>
     </div>
   </section>
 
   <section class="features">
     <h2>The long haul</h2>
     <div class="grid">
-      <div class="card"><img class="ic" src="assets/ic-upgrade.png" alt=""><h3>Chapter after chapter</h3><p>Clear every bill and the chapter turns over: bigger debts, tougher piggies, and a named reward for getting there. A chapter map opens up once you are a few in, so you can see the road ahead.</p></div>
-      <div class="card"><img class="ic" src="assets/ic-moveout.png" alt=""><h3>Move Out</h3><p>Stay in it long enough and the lease is done. Move Out wipes the slate for permanent Credit Score, extra swings, and weapons you cannot get any other way.</p></div>
+      <div class="card"><img class="ic" src="assets/ic-upgrade.png" alt=""><h3>Chapter after chapter</h3><p>Clear every bill and the chapter turns over: bigger debts, tougher piggies, and a named reward for getting there. Every turn also offers you two rule changes for the chapter ahead &mdash; you take one, so no two chapters play the same.</p></div>
+      <div class="card"><img class="ic" src="assets/ic-moveout.png" alt=""><h3>Move Out</h3><p>Stay in it long enough and the lease is done. Move Out wipes the slate for a permanent Credit Score, weapons you cannot get any other way, and Severance to spend on your R&eacute;sum&eacute; &mdash; unlocks that change what the next cycle even has. Then you pick a new career and go again.</p></div>
       <div class="card"><img class="ic" src="assets/ic-rare.png" alt=""><h3>Achievements and boards</h3><p>A long list of achievements to chase, plus leaderboards for your best day and your fastest run to debt free. All-time and weekly, on Game Center and Play Games.</p></div>
     </div>
   </section>
@@ -134,7 +158,9 @@
   <!-- Deliberately not an inventory. This used to be a count per collection —
        ten piggies, nine hammers, and so on — which handed players the whole
        list before they had opened the app. Finding out what else is in there is
-       most of the reason to keep smashing. -->
+       most of the reason to keep smashing. (It has also aged badly twice: the
+       roster and the rack have both grown since, and a published count goes
+       stale the moment one lands. No counts here. Ever.) -->
   <section class="numbers">
     <ul>
       <li><b>Piggies</b> that do not break easy</li>
@@ -142,8 +168,19 @@
       <li><b>Hats</b> that mean a payday</li>
       <li><b>Headlines</b> that wreck the economy</li>
       <li><b>Perks</b> you earn by paying on time</li>
+      <li><b>Careers</b> that cost you something</li>
+      <li><b>Books</b> for every chapter you clear</li>
+      <li><b>Interludes</b> that take over the table</li>
       <li><b>Plenty</b> you have not seen yet</li>
     </ul>
+  </section>
+
+  <!-- No cards and no icons on purpose: after five icon rows another one would
+       read as more features, and this is the opposite of a feature list. -->
+  <section class="features fair">
+    <h2>Fair and square</h2>
+    <p class="sub">The game is free to start &mdash; play First Days, smash a few hundred piggies, and see whether you like it. One purchase of <strong>$1.99</strong> unlocks the rest, forever. That is the entire business model.</p>
+    <p class="sub">No ads. No timers, no energy, nothing to wait for. No coin packs &mdash; the one purchase is not currency, and nothing you buy swings the hammer for you. No accounts, no trackers, no data collection. And the money in this game is not real and never becomes real.</p>
   </section>
 </main>
 
